@@ -20,7 +20,7 @@ export const Patient: React.FC<IPatient> = ({
     <TouchableHighlight onPress={() => navigate && navigate(id)}>
       <View style={styles.item}>
         <Text style={styles.text}>{firstName + ' ' + lastName}</Text>
-        <Text>Assignted practices:</Text>
+        <Text>Assigned practices:</Text>
         {assignedPractices.map((item, index) => (
           <Text key={index}>{item}</Text>
         ))}

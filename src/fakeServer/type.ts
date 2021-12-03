@@ -11,7 +11,7 @@ export interface Practices {
   name: string;
 }
 
-export interface PracitesPatients {
+export interface PracticesPatients {
   patientId: number;
   gpPracticeId: number;
 }

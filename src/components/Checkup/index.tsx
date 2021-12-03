@@ -11,7 +11,7 @@ export const Checkup: React.FC<ICheckup> = ({createdAt, averageSPO2}) => {
   return (
     <View style={styles.item}>
       <Text style={styles.text}>
-        Date check: {moment(createdAt).format('hh:mm:ss YYYY/MM/DD')}
+        Date check: {moment.unix(createdAt).format('hh:mm:ss YYYY/MM/DD')}
       </Text>
       {!!averageSPO2?.length && (
         <View>

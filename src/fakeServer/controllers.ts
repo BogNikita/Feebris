@@ -1,5 +1,5 @@
-import {getAvaregeSPO, getPracticesName} from './helpers';
-import {Checkups, PracitesPatients, Practices, Patients} from './type';
+import {getAverageSPO, getPracticesName} from './helpers';
+import {Checkups, PracticesPatients, Practices, Patients} from './type';
 
 export const checkupsControllers = async (db: Checkups[], id: number) => {
   const checkupsData = db.filter(item => item.patientId === id);
@@ -8,7 +8,7 @@ export const checkupsControllers = async (db: Checkups[], id: number) => {
   for (let item of checkupsData) {
     if (item.pulseOximeterData?.length) {
       for (const el of item.pulseOximeterData) {
-        const average = await getAvaregeSPO(el);
+        const average = await getAverageSPO(el);
         averageSPO2.push(average);
       }
       result.push({
@@ -24,7 +24,7 @@ export const checkupsControllers = async (db: Checkups[], id: number) => {
 
 export const patientsController = (
   dbPatients: Patients[],
-  dbGpPractiesPatients: PracitesPatients[],
+  dbGpPracticesPatients: PracticesPatients[],
   dbPractices: Practices[],
   id: number,
 ) => {
@@ -32,7 +32,7 @@ export const patientsController = (
   const dataWithAssignedPractices = data.map(item => ({
     ...item,
     assignedPractices: getPracticesName(
-      dbGpPractiesPatients,
+      dbGpPracticesPatients,
       dbPractices,
       item.id,
     ),

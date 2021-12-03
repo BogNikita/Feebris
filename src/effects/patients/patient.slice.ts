@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {ENPOINTS, fakeAxios} from '../../fakeServer/fakeAxios';
+import {ENDPOINTS, fakeAxios} from '../../fakeServer/fakeAxios';
 import {Patients} from './type';
 
 const initialState: Patients = {
@@ -12,7 +12,7 @@ export const fetchPatients = createAsyncThunk(
   'patients/setPatients',
   async (careHomeId: number) => {
     try {
-      const response = await fakeAxios(ENPOINTS.PATIENTS, careHomeId);
+      const response = await fakeAxios(ENDPOINTS.PATIENTS, careHomeId);
       return response;
     } catch (error) {
       throw error;

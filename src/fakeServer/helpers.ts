@@ -1,54 +1,44 @@
-import {PracitesPatients, Practices} from './type';
+import {PracticesPatients, Practices} from './type';
 
-const getPulseoxData = async (url: string) => {
+const getPulseOximeterData = async (url: string) => {
   switch (url) {
-    case 'pulseox/01.json': {
-      const data = (await import('../../data/pulseox/01.json')).default;
-      return data;
-    }
-    case 'pulseox/02.json': {
-      const data = (await import('../../data/pulseox/02.json')).default;
-      return data;
-    }
-    case 'pulseox/03.json': {
-      const data = (await import('../../data/pulseox/03.json')).default;
-      return data;
-    }
-    case 'pulseox/04.json': {
-      const data = (await import('../../data/pulseox/04.json')).default;
-      return data;
-    }
-    case 'pulseox/05.json': {
-      const data = (await import('../../data/pulseox/05.json')).default;
-      return data;
-    }
-    case 'pulseox/06.json': {
-      const data = (await import('../../data/pulseox/06.json')).default;
-      return data;
-    }
-    case 'pulseox/07.json': {
-      const data = (await import('../../data/pulseox/07.json')).default;
-      return data;
-    }
-    case 'pulseox/08.json': {
-      const data = (await import('../../data/pulseox/08.json')).default;
-      return data;
-    }
-    case 'pulseox/09.json': {
-      const data = (await import('../../data/pulseox/09.json')).default;
-      return data;
-    }
-    case 'pulseox/10.json': {
-      const data = (await import('../../data/pulseox/10.json')).default;
-      return data;
-    }
+    case 'pulseox/01.json':
+      return (await import('../../data/pulseox/01.json')).default;
+
+    case 'pulseox/02.json':
+      return (await import('../../data/pulseox/02.json')).default;
+
+    case 'pulseox/03.json':
+      return (await import('../../data/pulseox/03.json')).default;
+
+    case 'pulseox/04.json':
+      return (await import('../../data/pulseox/04.json')).default;
+
+    case 'pulseox/05.json':
+      return (await import('../../data/pulseox/05.json')).default;
+
+    case 'pulseox/06.json':
+      return (await import('../../data/pulseox/06.json')).default;
+
+    case 'pulseox/07.json':
+      return (await import('../../data/pulseox/07.json')).default;
+
+    case 'pulseox/08.json':
+      return (await import('../../data/pulseox/08.json')).default;
+
+    case 'pulseox/09.json':
+      return (await import('../../data/pulseox/09.json')).default;
+
+    case 'pulseox/10.json':
+      return (await import('../../data/pulseox/10.json')).default;
+
     default:
       return [];
   }
 };
 
-export const getAvaregeSPO = async (url: string) => {
-  const data = await getPulseoxData(url);
+export const getAverageSPO = async (url: string) => {
+  const data = await getPulseOximeterData(url);
   const startTime = data[0].TIMESTAMP;
 
   const normalRange = data.map((item, i) => {
@@ -77,14 +67,14 @@ export const getAvaregeSPO = async (url: string) => {
 };
 
 export const getPracticesName = (
-  dbGpPractiesPatients: PracitesPatients[],
+  dbGpPracticesPatients: PracticesPatients[],
   dbPractices: Practices[],
-  pacientId: number,
+  patientId: number,
 ) => {
-  const gpPracticeId = dbGpPractiesPatients.filter(
-    item => item.patientId === pacientId,
+  const gpPracticeId = dbGpPracticesPatients.filter(
+    item => item.patientId === patientId,
   );
-  const practicIdtoName = gpPracticeId.map(item => {
+  const practiceName = gpPracticeId.map(item => {
     const practice = dbPractices.find(
       practices => practices.id === item.gpPracticeId,
     );
@@ -92,5 +82,5 @@ export const getPracticesName = (
       return practice.name;
     }
   });
-  return practicIdtoName;
+  return practiceName;
 };

@@ -5,7 +5,7 @@ export interface Checkups {
 
 type Checkup = {
   id: number;
-  patiendId: number;
+  patientId: number;
   createdAt: number;
   pulseOximeterData?: string[];
   averageSPO2?: number[];
